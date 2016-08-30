@@ -6,15 +6,16 @@
 			this.init();
 		};
 		$.extend(PageSwitch.prototype, {
+			// 对用户调用传递来的参数进行页面初始化
 			init: function() {
 				this.selectors = this.settings.selectors;
-				this.direction = this.settings.direction === 'vertical' ? true : false;
+				this.direction = this.settings.direction === 'vertical' ? true : false;	// 是否竖屏
 				this.sections = this.ele.find(this.selectors.sections);
 				this.section = this.ele.find(this.selectors.section);
 				this.pagesCount = this.pagesCount();
 				var index = this.settings.index;
 				this.index = (index >= 0 && index <= this.pagesCount) ? index : 0;
-				this.canScroll = true;
+				this.canScroll = true;	// 控制鼠标滑动
 
 				if(!this.direction) {
 					this._initLayout();
@@ -26,6 +27,7 @@
 
 				this._initEvent();
 			},
+			// 获取切换页面的数量
 			pagesCount: function() {
 				return this.section.length;
 			},
@@ -69,6 +71,7 @@
 			},
 			_initEvent: function() {
 				if(this.settings.pagination) {
+					// 分页点击事件
 					this.pageItems.on('click', function(e) {
 						this.index = $(e.target).index();
 						this._scrollPage();
@@ -76,6 +79,7 @@
 				}
 
 				if(this.settings.keyboard) {
+					// 按键事件
 					$(window).keydown(function(e) {
 						var keyCode = e.keyCode;
 						if(keyCode === 37 || keyCode === 38) {
@@ -86,6 +90,7 @@
 					}.bind(this));
 				}
 
+				// 滑轮滚动事件，需要考虑到浏览器兼容
 				this.ele.on('mousewheel DOMMouseScroll', function(e) {
 					var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
 					if(this.canScroll) {
@@ -154,14 +159,16 @@
 		return PageSwitch;
 	})();
 
+	// 注册JQuery对象级插件
 	$.fn.PageSwitch = function(props) {
+		// 返回this方便链式调用
 		return this.each(function() {
 			var $target = $(this),
 				instance = $target.data('pageSwitch');
 			if(!instance) {
 				instance = new PageSwitch($target, props);
 				$target.data('pageSwitch', instance);
-			};
+			}
 			if(typeof props === 'string') {
 				instance[props]();
 			}

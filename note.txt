@@ -40,8 +40,8 @@
 思考：要封装一个组件，首先应该在构造函数里初始化经常需要使用的DOM节点和需要使用的参数，同时对DOM节点中的事件初始化（通常在init方法中）。
 
 鼠标滚轮事件：
-	>> 大部分浏览器鼠标滚轮事件是 mouseWheel，火狐浏览器使用的是DOMMouseScroll。
-	$(document).on('mouseWheel DOMMouseScroll', handler);
+	>> 大部分浏览器鼠标滚轮事件是 mousewheel，火狐浏览器使用的是DOMMouseScroll。
+	$(document).on('mousewheel DOMMouseScroll', handler);
 	>> 其它浏览器通过wheeldalta属性来判断，火狐浏览器通过detail属性来判断。向下滚动，wheeldelta值-120，detail值为3。
 
 JQuery将JS中的很多原生属性都封装在了originalEvent属性下。
@@ -54,3 +54,6 @@ jQuery中.witch和.keyCode属性来确定按下了哪个键：
 	1. div即使不是绝对定位也可以翻转、平移
 	2. 翻转动画需要3D支持（transform-style: preserve-3d;）
 	3. 不管你是否绝对定位，并且需要翻转后需要页面隐藏，可以使用backface-visibility: hidden;(必须在需要隐藏的div上使用该属性)
+
+JQuery中 position()方法返回该元素相对于父元素的位置
+		 offset()方法返回该元素相对于文档的位置
