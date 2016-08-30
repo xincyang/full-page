@@ -1,0 +1,56 @@
+;(function($) {
+	// do something	
+})(jQuery)
+
+闭包的作用：
+1. 避免全局依赖
+2. 避免第三方破坏
+3. 兼容jQuery操作符$和jquery
+
+类级别组件开发
+	- 给jQuery命名空间下添加新的全局函数，也称为静态方法。
+	jQuery.myPlugin = function() {
+		// do something
+	};
+	>> $.ajax()、$.extend()
+	……代码说明
+		return this返回当前对象，来维护插件的链式调用
+对象级别组件开发
+	- 即挂在jQuery原型下的方法，这样通过选择器获取的jQuery对象实例也能共享该方法，也称为动态方法
+	$.fn.myPlugin = function() {
+		// do something
+	};
+	>> add()、attr()等，需要创建实例来调用
+	$.fn.myPlugin = function() {
+		return this.each(function() {
+
+		});
+	};
+单例模式
+	$.fn.MyPlugin = function() {
+		var me = $(this),
+			instance = me.data('myPlugin');
+		if(!instance) {
+			me.data('myPlugin', (instance = new myPlugin()));
+		}
+	};
+	>> 如果实例存在则不再重新创建实例
+	>> 利用data()来存放插件对象的实例
+
+思考：要封装一个组件，首先应该在构造函数里初始化经常需要使用的DOM节点和需要使用的参数，同时对DOM节点中的事件初始化（通常在init方法中）。
+
+鼠标滚轮事件：
+	>> 大部分浏览器鼠标滚轮事件是 mouseWheel，火狐浏览器使用的是DOMMouseScroll。
+	$(document).on('mouseWheel DOMMouseScroll', handler);
+	>> 其它浏览器通过wheeldalta属性来判断，火狐浏览器通过detail属性来判断。向下滚动，wheeldelta值-120，detail值为3。
+
+JQuery将JS中的很多原生属性都封装在了originalEvent属性下。
+
+jQuery中.witch和.keyCode属性来确定按下了哪个键：
+	arrow left 37	arrow up 38
+	arrow right 39	arrow down 40
+
+关于3D动画自己的几个总结：
+	1. div即使不是绝对定位也可以翻转、平移
+	2. 翻转动画需要3D支持（transform-style: preserve-3d;）
+	3. 不管你是否绝对定位，并且需要翻转后需要页面隐藏，可以使用backface-visibility: hidden;(必须在需要隐藏的div上使用该属性)

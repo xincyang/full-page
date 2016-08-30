@@ -1,0 +1,23 @@
+{
+  "name": "full-page",
+  "version": "1.0.0",
+  "description": "full page test with module",
+  "main": "index.htm",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xincyang/full-page.git"
+  },
+  "keywords": [
+    "full-page",
+    "module"
+  ],
+  "author": "xincyang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xincyang/full-page/issues"
+  },
+  "homepage": "https://github.com/xincyang/full-page#readme"
+}

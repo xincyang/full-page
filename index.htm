@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Full Page</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html, body {
+			height: 100%;
+		}
+		.container, .sections, .section {
+			position: relative;
+
+			height: 100%;
+
+			background-position: 50% 50%;
+		}
+		.container {
+			overflow: hidden;
+		}
+		.sections {
+			-webkit-transition: transform .6s ease;
+			-moz-transition: transform .6s ease;
+			-ms-transition: transform .6s ease;;
+			transition: transform .6s ease;	
+		}
+		#section0 {
+			background-image: url(images/1.jpg);
+		}
+		#section1 {
+			background-image: url(images/2.jpg);
+		}
+		#section2 {
+			background-image: url(images/3.jpg);
+		}
+		#section3 {
+			background-image: url(images/4.jpg);
+		}
+		.pages {
+			position: absolute;
+			
+		}
+
+		.pages.vertical {
+			right: 10px;
+			top: 50%;
+		}
+
+		.pages.horizontal {
+			left: 50%;
+			bottom: 10px;
+		}
+
+		.pages li {
+			width: 8px;
+			height: 8px;
+			margin: 10px 5px;
+
+			vertical-align: middle;
+			list-style: none;
+			cursor: pointer;
+
+			background-color: #fff;
+			border-radius: 50%;
+
+			transition: background-color .6s ease;
+		}
+
+		.pages.vertical li {
+			
+		}
+
+		.pages.horizontal li {
+			display: inline-block;
+		}
+
+		.pages li.active {
+			width: 16px;
+			height: 16px;
+			margin-left: 0;
+
+			background: none;
+			border: 2px solid #fffe00;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="sections">
+			<div class="section" id="section0"></div>
+			<div class="section" id="section1"></div>
+			<div class="section" id="section2"></div>
+			<div class="section" id="section3"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="pageswitch.js"></script>
+</body>
+</html>
