@@ -2,7 +2,7 @@
 	var PageSwitch = (function() {
 		var PageSwitch = function(ele, opts) {
 			this.ele = ele;
-			this.settings = $.extend({}, true, $.fn.PageSwitch.DEFAULTS, opts || {});	// 深拷贝
+			this.settings = $.extend(true, {}, $.fn.PageSwitch.DEFAULTS, opts || {});	// 深拷贝
 			this.init();
 		};
 		$.extend(PageSwitch.prototype, {
